@@ -20,5 +20,21 @@
   <%= @restaurant.category %>
 </p>
 
+<h1>Reviews :</h1>
+
+<ul>
+  <% @restaurant.reviews.each do |review|%>
+    <li><%= review.content  %></li>
+  <% end %>
+</ul>
+
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>
+
+<%= simple_form_for [@restaurant, Review.new] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit "add a review and a rating", class: "btn btn-primary" %>
+<% end %>
+
+
